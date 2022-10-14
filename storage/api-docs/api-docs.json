@@ -1,0 +1,1731 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Badaso API Documentation",
+        "description": "Badaso API Documentation",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "email": "hello@uatech.co.id"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000/badaso-api",
+            "description": "Development Server"
+        }
+    ],
+    "paths": {
+        "/v1/auth/forgot-password": {
+            "post": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Forgot Password",
+                "description": "Send forgot password request",
+                "operationId": "forgotPassword",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "johndoe@gmail.com"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "402": {
+                        "description": "Payment Required"
+                    }
+                }
+            }
+        },
+        "/v1/auth/forgot-password-verify": {
+            "post": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Verify Forgot Password Token",
+                "description": "Verify the forgot password token sent to the email",
+                "operationId": "forgotPasswordVerify",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "johndoe@gmail.com"
+                                    },
+                                    "token": {
+                                        "type": "string",
+                                        "example": "123456"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "402": {
+                        "description": "Payment Required"
+                    }
+                }
+            }
+        },
+        "/v1/auth/login": {
+            "post": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Login Authentication",
+                "description": "Log in the user",
+                "operationId": "login",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "johndoe@gmail.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": ""
+                                    },
+                                    "remember": {
+                                        "type": "boolean",
+                                        "example": "false"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "402": {
+                        "description": "Payment Required"
+                    }
+                }
+            }
+        },
+        "/v1/auth/logout": {
+            "post": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Logout",
+                "description": "Log out the current user",
+                "operationId": "logout",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "402": {
+                        "description": "Payment Required"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/v1/auth/re-request-verification": {
+            "post": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Resend the verification token",
+                "description": "Request the server to resend the verification token",
+                "operationId": "reRequestVerification",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "johndoe@gmail.com"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "402": {
+                        "description": "Payment Required"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/v1/auth/refresh-token": {
+            "post": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Refresh Token for Authentication",
+                "description": "Request the jwt refresh token",
+                "operationId": "refreshToken",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "402": {
+                        "description": "Payment Required"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/v1/auth/register": {
+            "post": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "User Registration",
+                "description": "Register the user",
+                "operationId": "register",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "John Doe"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "johndoe@gmail.com"
+                                    },
+                                    "username": {
+                                        "type": "string",
+                                        "example": "johndoe"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": ""
+                                    },
+                                    "passwordConfirmation": {
+                                        "type": "string",
+                                        "example": ""
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "402": {
+                        "description": "Payment Required"
+                    }
+                }
+            }
+        },
+        "/v1/auth/reset-password": {
+            "post": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "User Reset Password",
+                "description": "Send reset password request",
+                "operationId": "resetPassword",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "johndoe@gmail.com"
+                                    },
+                                    "token": {
+                                        "type": "string",
+                                        "example": ""
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "402": {
+                        "description": "Payment Required"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/v1/auth/verify": {
+            "post": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Get User Info",
+                "description": "Get the current user information",
+                "operationId": "getUser",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "johndoe@gmail.com"
+                                    },
+                                    "token": {
+                                        "type": "string",
+                                        "example": ""
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "402": {
+                        "description": "Payment Required"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/v1/auth/user": {
+            "get": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Get User",
+                "description": "Get the current user information",
+                "operationId": "User",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "402": {
+                        "description": "Payment Required"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/v1/entities/booking": {
+            "get": {
+                "tags": [
+                    "booking"
+                ],
+                "summary": "Browse Booking",
+                "description": "Returns list of Booking",
+                "operationId": "browseBooking",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "402": {
+                        "description": "Payment Required"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/v1/entities/booking/read?slug=booking&id={id}": {
+            "get": {
+                "tags": [
+                    "booking"
+                ],
+                "summary": "Get Booking based on id",
+                "description": "Returns Booking based on id",
+                "operationId": "readBooking",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "402": {
+                        "description": "Payment Required"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/v1/entities/booking/add": {
+            "post": {
+                "tags": [
+                    "booking"
+                ],
+                "summary": "Insert new Booking",
+                "description": "Insert new Booking into database",
+                "operationId": "addBooking",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "example": {
+                                            "name": "Abc",
+                                            "tglCheckin": "2021-01-01T00:00:00.000Z",
+                                            "tglCheckout": "2021-01-01T00:00:00.000Z",
+                                            "noKamar": "",
+                                            "totalHarga": "123",
+                                            "totalBayar": "123"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "402": {
+                        "description": "Payment Required"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/v1/entities/booking/edit": {
+            "put": {
+                "tags": [
+                    "booking"
+                ],
+                "summary": "Edit an existing Booking",
+                "description": "Edit an existing Booking",
+                "operationId": "editBooking",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "example": {
+                                            "name": "Abc",
+                                            "tglCheckin": "2021-01-01T00:00:00.000Z",
+                                            "tglCheckout": "2021-01-01T00:00:00.000Z",
+                                            "noKamar": "",
+                                            "totalHarga": "123",
+                                            "totalBayar": "123"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "402": {
+                        "description": "Payment Required"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/v1/entities/booking/delete": {
+            "delete": {
+                "tags": [
+                    "booking"
+                ],
+                "summary": "Delete one record of Booking",
+                "description": "Delete one record of Booking",
+                "operationId": "deleteBooking",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "slug": {
+                                        "type": "string",
+                                        "example": "booking"
+                                    },
+                                    "data": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "field": {
+                                                    "type": "string",
+                                                    "default": "id"
+                                                },
+                                                "value": {
+                                                    "type": "integer",
+                                                    "example": "123"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "402": {
+                        "description": "Payment Required"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/v1/entities/booking/delete-multiple": {
+            "delete": {
+                "tags": [
+                    "booking"
+                ],
+                "summary": "Delete multiple record of Booking",
+                "description": "Delete multiple record of Booking",
+                "operationId": "deleteMultipleBooking",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "slug": {
+                                        "type": "string",
+                                        "example": "booking"
+                                    },
+                                    "data": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "field": {
+                                                    "type": "string",
+                                                    "default": "id"
+                                                },
+                                                "value": {
+                                                    "type": "{}",
+                                                    "example": "123,123"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "402": {
+                        "description": "Payment Required"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/v1/entities/booking/sort": {
+            "put": {
+                "tags": [
+                    "booking"
+                ],
+                "summary": "Sort existing Booking",
+                "description": "Sort existing Booking",
+                "operationId": "sortBooking",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "slug": {
+                                        "type": "string",
+                                        "example": "booking"
+                                    },
+                                    "data": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "tglCheckin": {
+                                                    "type": "string"
+                                                },
+                                                "tglCheckout": {
+                                                    "type": "string"
+                                                },
+                                                "noKamar": {
+                                                    "type": "string"
+                                                },
+                                                "totalHarga": {
+                                                    "type": "integer"
+                                                },
+                                                "totalBayar": {
+                                                    "type": "integer"
+                                                },
+                                                "createdAt": {
+                                                    "type": "string"
+                                                },
+                                                "updatedAt": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "example": [
+                                            {
+                                                "id": "123",
+                                                "name": "Abc",
+                                                "tglCheckin": "2021-01-01T00:00:00.000Z",
+                                                "tglCheckout": "2021-01-01T00:00:00.000Z",
+                                                "noKamar": "",
+                                                "totalHarga": "123",
+                                                "totalBayar": "123",
+                                                "createdAt": "2021-01-01T00:00:00.000Z",
+                                                "updatedAt": "2021-01-01T00:00:00.000Z"
+                                            },
+                                            {
+                                                "id": "123",
+                                                "name": "Abc",
+                                                "tglCheckin": "2021-01-01T00:00:00.000Z",
+                                                "tglCheckout": "2021-01-01T00:00:00.000Z",
+                                                "noKamar": "",
+                                                "totalHarga": "123",
+                                                "totalBayar": "123",
+                                                "createdAt": "2021-01-01T00:00:00.000Z",
+                                                "updatedAt": "2021-01-01T00:00:00.000Z"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "402": {
+                        "description": "Payment Required"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/v1/entities/checkout": {
+            "get": {
+                "tags": [
+                    "checkout"
+                ],
+                "summary": "Browse Checkout",
+                "description": "Returns list of Checkout",
+                "operationId": "browseCheckout",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "402": {
+                        "description": "Payment Required"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/v1/entities/checkout/read?slug=checkout&id={id}": {
+            "get": {
+                "tags": [
+                    "checkout"
+                ],
+                "summary": "Get Checkout based on id",
+                "description": "Returns Checkout based on id",
+                "operationId": "readCheckout",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "402": {
+                        "description": "Payment Required"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/v1/entities/checkout/add": {
+            "post": {
+                "tags": [
+                    "checkout"
+                ],
+                "summary": "Insert new Checkout",
+                "description": "Insert new Checkout into database",
+                "operationId": "addCheckout",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "example": {
+                                            "name": "Abc",
+                                            "noKamar": "",
+                                            "checkoutDate": "2021-01-01T00:00:00.000Z"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "402": {
+                        "description": "Payment Required"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/v1/entities/checkout/edit": {
+            "put": {
+                "tags": [
+                    "checkout"
+                ],
+                "summary": "Edit an existing Checkout",
+                "description": "Edit an existing Checkout",
+                "operationId": "editCheckout",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "example": {
+                                            "name": "Abc",
+                                            "noKamar": ""
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "402": {
+                        "description": "Payment Required"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/v1/entities/checkout/delete": {
+            "delete": {
+                "tags": [
+                    "checkout"
+                ],
+                "summary": "Delete one record of Checkout",
+                "description": "Delete one record of Checkout",
+                "operationId": "deleteCheckout",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "slug": {
+                                        "type": "string",
+                                        "example": "checkout"
+                                    },
+                                    "data": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "field": {
+                                                    "type": "string",
+                                                    "default": "id"
+                                                },
+                                                "value": {
+                                                    "type": "integer",
+                                                    "example": "123"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "402": {
+                        "description": "Payment Required"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/v1/entities/checkout/delete-multiple": {
+            "delete": {
+                "tags": [
+                    "checkout"
+                ],
+                "summary": "Delete multiple record of Checkout",
+                "description": "Delete multiple record of Checkout",
+                "operationId": "deleteMultipleCheckout",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "slug": {
+                                        "type": "string",
+                                        "example": "checkout"
+                                    },
+                                    "data": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "field": {
+                                                    "type": "string",
+                                                    "default": "id"
+                                                },
+                                                "value": {
+                                                    "type": "{}",
+                                                    "example": "123,123"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "402": {
+                        "description": "Payment Required"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/v1/entities/checkout/sort": {
+            "put": {
+                "tags": [
+                    "checkout"
+                ],
+                "summary": "Sort existing Checkout",
+                "description": "Sort existing Checkout",
+                "operationId": "sortCheckout",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "slug": {
+                                        "type": "string",
+                                        "example": "checkout"
+                                    },
+                                    "data": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "noKamar": {
+                                                    "type": "string"
+                                                },
+                                                "checkoutDate": {
+                                                    "type": "string"
+                                                },
+                                                "createdAt": {
+                                                    "type": "string"
+                                                },
+                                                "updatedAt": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "example": [
+                                            {
+                                                "id": "123",
+                                                "name": "Abc",
+                                                "noKamar": "",
+                                                "checkoutDate": "2021-01-01T00:00:00.000Z",
+                                                "createdAt": "2021-01-01T00:00:00.000Z",
+                                                "updatedAt": "2021-01-01T00:00:00.000Z"
+                                            },
+                                            {
+                                                "id": "123",
+                                                "name": "Abc",
+                                                "noKamar": "",
+                                                "checkoutDate": "2021-01-01T00:00:00.000Z",
+                                                "createdAt": "2021-01-01T00:00:00.000Z",
+                                                "updatedAt": "2021-01-01T00:00:00.000Z"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "402": {
+                        "description": "Payment Required"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/v1/entities/room": {
+            "get": {
+                "tags": [
+                    "room"
+                ],
+                "summary": "Browse Room",
+                "description": "Returns list of Room",
+                "operationId": "browseRoom",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "402": {
+                        "description": "Payment Required"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/v1/entities/room/read?slug=room&id={id}": {
+            "get": {
+                "tags": [
+                    "room"
+                ],
+                "summary": "Get Room based on id",
+                "description": "Returns Room based on id",
+                "operationId": "readRoom",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "402": {
+                        "description": "Payment Required"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/v1/entities/room/add": {
+            "post": {
+                "tags": [
+                    "room"
+                ],
+                "summary": "Insert new Room",
+                "description": "Insert new Room into database",
+                "operationId": "addRoom",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "example": {
+                                            "tipeKamar": "123",
+                                            "noKamar": "123",
+                                            "harga": "123",
+                                            "status": "123"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "402": {
+                        "description": "Payment Required"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/v1/entities/room/edit": {
+            "put": {
+                "tags": [
+                    "room"
+                ],
+                "summary": "Edit an existing Room",
+                "description": "Edit an existing Room",
+                "operationId": "editRoom",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "data": {
+                                        "type": "object",
+                                        "example": {
+                                            "tipeKamar": "123",
+                                            "noKamar": "123",
+                                            "harga": "123",
+                                            "status": "123"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "402": {
+                        "description": "Payment Required"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/v1/entities/room/delete": {
+            "delete": {
+                "tags": [
+                    "room"
+                ],
+                "summary": "Delete one record of Room",
+                "description": "Delete one record of Room",
+                "operationId": "deleteRoom",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "slug": {
+                                        "type": "string",
+                                        "example": "room"
+                                    },
+                                    "data": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "field": {
+                                                    "type": "string",
+                                                    "default": "id"
+                                                },
+                                                "value": {
+                                                    "type": "integer",
+                                                    "example": "123"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "402": {
+                        "description": "Payment Required"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/v1/entities/room/delete-multiple": {
+            "delete": {
+                "tags": [
+                    "room"
+                ],
+                "summary": "Delete multiple record of Room",
+                "description": "Delete multiple record of Room",
+                "operationId": "deleteMultipleRoom",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "slug": {
+                                        "type": "string",
+                                        "example": "room"
+                                    },
+                                    "data": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "field": {
+                                                    "type": "string",
+                                                    "default": "id"
+                                                },
+                                                "value": {
+                                                    "type": "{}",
+                                                    "example": "123,123"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "402": {
+                        "description": "Payment Required"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/v1/entities/room/sort": {
+            "put": {
+                "tags": [
+                    "room"
+                ],
+                "summary": "Sort existing Room",
+                "description": "Sort existing Room",
+                "operationId": "sortRoom",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "slug": {
+                                        "type": "string",
+                                        "example": "room"
+                                    },
+                                    "data": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer"
+                                                },
+                                                "tipeKamar": {
+                                                    "type": "integer"
+                                                },
+                                                "noKamar": {
+                                                    "type": "integer"
+                                                },
+                                                "harga": {
+                                                    "type": "integer"
+                                                },
+                                                "status": {
+                                                    "type": "integer"
+                                                },
+                                                "createdAt": {
+                                                    "type": "string"
+                                                },
+                                                "updatedAt": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "example": [
+                                            {
+                                                "id": "123",
+                                                "tipeKamar": "123",
+                                                "noKamar": "123",
+                                                "harga": "123",
+                                                "status": "123",
+                                                "createdAt": "2021-01-01T00:00:00.000Z",
+                                                "updatedAt": "2021-01-01T00:00:00.000Z"
+                                            },
+                                            {
+                                                "id": "123",
+                                                "tipeKamar": "123",
+                                                "noKamar": "123",
+                                                "harga": "123",
+                                                "status": "123",
+                                                "createdAt": "2021-01-01T00:00:00.000Z",
+                                                "updatedAt": "2021-01-01T00:00:00.000Z"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "402": {
+                        "description": "Payment Required"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/v1/file/upload/lfm": {
+            "post": {
+                "tags": [
+                    "upload file"
+                ],
+                "summary": "Upload File",
+                "description": "Upload File",
+                "operationId": "uploadFile",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "working_dir": {
+                                        "description": "/shares use if you access storage public users, /{user_id} use if you access storage private users",
+                                        "type": "string",
+                                        "example": "/shares"
+                                    },
+                                    "upload": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "402": {
+                        "description": "Payment Required"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/v1/file/browse/lfm?workingDir={workingDir}": {
+            "get": {
+                "tags": [
+                    "upload file"
+                ],
+                "summary": "Browse File Shares",
+                "description": "Returns list of File Shares",
+                "operationId": "browseFiles",
+                "parameters": [
+                    {
+                        "name": "workingDir",
+                        "in": "path",
+                        "description": "/shares use if you access storage public users, /{user_id} use if you access storage private users",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "/shares"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "402": {
+                        "description": "Payment Required"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/v1/file/delete/lfm?workingDir={workingDir}&items[]={items}": {
+            "get": {
+                "tags": [
+                    "upload file"
+                ],
+                "summary": "Delete File Shares",
+                "description": "Delete File In Shares",
+                "operationId": "deleteFile",
+                "parameters": [
+                    {
+                        "name": "workingDir",
+                        "in": "path",
+                        "description": "/shares use if you access storage public users, /{user_id} use if you access storage private users",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "/shares"
+                        }
+                    },
+                    {
+                        "name": "items",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "example": "http://localhost:8000/storage/1kb-thumb.png"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "402": {
+                        "description": "Payment Required"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "name": "Authorization",
+                "in": "header",
+                "scheme": "bearer"
+            }
+        }
+    }
+}
